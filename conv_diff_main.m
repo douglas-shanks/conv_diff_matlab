@@ -11,9 +11,12 @@ dx2 = dx*dx;
 T = 0.04;
 
 
-% initial solution
+% initial condition
+x = linspace(0,1,N);
+y = x';
 [X,Y] = meshgrid([0:dx:1],[0:dx:1]);
-u0 = sin(X).*sin(Y);
+%u0 = sin(X).*sin(Y);
+u0 = 10/sqrt(2*pi).*exp( ( (X-0.8).^2 + (Y-0.8).^2 )./(0.1) ); 
 figure(1)
 surf([0:dx:1],[0:dx:1],u0)
 title('Initial solution')
@@ -23,7 +26,7 @@ colorbar
 shading interp
 axis tight
 view(2)
-% reshape initial solution for algorithm
+% reshape initial condition for algorithm
 u1 = reshape(u0,N*N,1);
 
 %% Explicit method
