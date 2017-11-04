@@ -8,15 +8,13 @@ N = 50;
 dx = 1./(N-1);
 dx2 = dx*dx;
 % final time
-T = 0.04;
+T = 0.4;
 
 
 % initial condition
-x = linspace(0,1,N);
-y = x';
 [X,Y] = meshgrid([0:dx:1],[0:dx:1]);
 %u0 = sin(X).*sin(Y);
-u0 = 10/sqrt(2*pi).*exp( ( (X-0.8).^2 + (Y-0.8).^2 )./(0.1) ); 
+u0 = 1.0.*exp( -10.0.*( (X - 0.7).^2 + ( Y - 0.7).^2 ));
 figure(1)
 surf([0:dx:1],[0:dx:1],u0)
 title('Initial solution')
@@ -84,8 +82,8 @@ A_rhs_imp = rhs_imp(N,Rc);
 b_imp = zeros(N*N,1);
 % initial solution
 [X,Y] = meshgrid([0:dx:1],[0:dx:1]);
-u0 = sin(X).*sin(Y);
-
+%u0 = sin(X).*sin(Y);
+u0 = 1.0.*exp( -10.0.*( (X - 0.7).^2 + ( Y - 0.7).^2 ));
 % reshape initial solution for algorithm
 u1 = reshape(u0,N*N,1);
 
